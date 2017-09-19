@@ -3,6 +3,7 @@ from flask_restful import Resource, Api
 from .db import Database
 from .api import Players
 from .api import Groups
+from .api import PlayerPermissions
 
 app = Flask(__name__)
 app.config.from_object("backend.default_settings")
@@ -17,3 +18,7 @@ api.add_resource(Players, '/', '/players', '/players/<string:playerUuid>')
 
 Groups.db = database
 api.add_resource(Groups, '/groups', '/groups/<int:groupId>')
+
+PlayerPermissions.db = database
+api.add_resource(PlayerPermissions, '/players/<string:playerUuid>/permissions',
+    '/players/<string:playerUuid>/permissions/<int:permissionId>')

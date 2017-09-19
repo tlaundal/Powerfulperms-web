@@ -32,14 +32,23 @@ class Database:
             row = cursor.fetchone()
             return None if row is None else Player(row[0], row[1], row[2], row[3])
 
-    def getPlayerPermissions(self, playerUuid):
-        cursor = self.db.cursor()
-        cursor.execute("""SELECT id, permission, world, server, expires
+    def getPlayerPermissions(self, playerUuid, permissionId=None):
+        query = """SELECT id, permission, world, server, expires
             FROM {}playerpermissions
-            WHERE playeruuid = %s""".format(self.prefix), (playerUuid,))
-        rows = cursor.fetchall()
+            WHERE playeruuid = %s""".format(self.prefix)
 
-        return [Permission(row[0], row[1], row[2], row[3], row[4]) for row in rows]
+        if permissionId is not None:
+            query += " AND id = %s"
+
+        cursor = self.db.cursor()
+        cursor.execute(query, (playerUuid,) if permissionId is None else (playerUuid, permissionId))
+
+        if permissionId is None:
+            rows = cursor.fetchall()
+            return [Permission(row[0], row[1], row[2], row[3], row[4]) for row in rows]
+        else:
+            row = cursor.fetchone()
+            return None if row is None else Permission(row[0], row[1], row[2], row[3], row[4])
 
     def getPlayerGroups(self, playerUuid):
         cursor = self.db.cursor()
