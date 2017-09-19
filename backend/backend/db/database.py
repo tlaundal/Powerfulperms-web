@@ -77,14 +77,23 @@ class Database:
             row = cursor.fetchone()
             return None if row is None else Group(row[0], row[1], row[2], row[3])
 
-    def getGroupPermissions(self, groupId):
-        cursor = self.db.cursor()
-        cursor.execute("""SELECT id, permission, world, server, expires
+    def getGroupPermissions(self, groupId, permissionId=None):
+        query = """SELECT id, permission, world, server, expires
             FROM {}grouppermissions
-            WHERE groupid = %s""".format(self.prefix), (groupId,))
-        rows = cursor.fetchall()
+            WHERE groupid = %s""".format(self.prefix)
 
-        return [Permission(row[0], row[1], row[2], row[3], row[4]) for row in rows]
+        if permissionId is not None:
+            query += " AND id = %s"
+
+        cursor = self.db.cursor()
+        cursor.execute(query, (groupId,) if permissionId is None else (groupId, permissionId))
+
+        if permissionId is None:
+            rows = cursor.fetchall()
+            return [Permission(row[0], row[1], row[2], row[3], row[4]) for row in rows]
+        else:
+            row = cursor.fetchone()
+            return Permission(row[0], row[1], row[2], row[3], row[4])
 
     def getGroupParents(self, groupId):
         cursor = self.db.cursor()
