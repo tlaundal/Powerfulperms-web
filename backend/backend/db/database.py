@@ -15,22 +15,22 @@ class Database:
             passwd=config['DATABASE_PASS'],
             db=config['DATABASE_NAME'])
 
-    def getPlayers(self):
+    def getPlayers(self, playerUuid=None):
+        query = """SELECT uuid, name, prefix, suffix
+            FROM {}players;""".format(self.prefix)
+
+        if playerUuid is not None:
+            query += " WHERE uuid = %s"
+
         cursor = self.db.cursor()
-        cursor.execute("""SELECT uuid, name, prefix, suffix
-            FROM {}players;""".format(self.prefix))
-        rows = cursor.fetchall()
+        cursor.execute(query, None if playerUuid is None else (playerUuid, ))
 
-        return [Player(row[0], row[1], row[2], row[3]) for row in rows]
-
-    def getPlayer(self, playerUuid):
-        cursor = self.db.cursor()
-        cursor.execute("""SELECT uuid, name, prefix, suffix
-            FROM {}players
-            WHERE uuid = %s""".format(self.prefix), (playerUuid,))
-        row = cursor.fetchone()
-
-        return Player(row[0], row[1], row[2], row[3]) if row is not None else None
+        if playerUuid is None:
+            rows = cursor.fetchall()
+            return [Player(row[0], row[1], row[2], row[3]) for row in rows]
+        else:
+            row = cursor.fetchone()
+            return None if row is None else Player(row[0], row[1], row[2], row[3])
 
     def getPlayerPermissions(self, playerUuid):
         cursor = self.db.cursor()
@@ -51,22 +51,22 @@ class Database:
 
         return [PlayerGroup(row[4], Group(row[0], row[1], row[2], row[3]), row[5], row[6], row[7]) for row in rows]
 
-    def getGroups(self):
+    def getGroups(self, groupId=None):
+        query = """SELECT id, name, ladder, `rank`
+            FROM {}groups""".format(self.prefix)
+
+        if groupId is not None:
+            query += " WHERE id = %s"
+
         cursor = self.db.cursor()
-        cursor.execute("""SELECT id, name, ladder, `rank`
-            FROM {}groups""".format(self.prefix))
-        rows = cursor.fetchall()
+        cursor.execute(query, None if groupId is None else (groupId, ))
 
-        return [Group(row[0], row[1], row[2], row[3]) for row in rows]
-
-    def getGroup(self, groupId):
-        cursor = self.db.cursor()
-        cursor.execute("""SELECT id, name, ladder, `rank`
-            FROM {}groups
-            WHERE id = %s""".format(self.prefix), (groupId,))
-        row = cursor.fetchone()
-
-        return Group(row[0], row[1], row[2], row[3]) if row is not None else None
+        if groupId is None:
+            rows = cursor.fetchall()
+            return [Group(row[0], row[1], row[2], row[3]) for row in rows]
+        else:
+            row = cursor.fetchone()
+            return None if row is None else Group(row[0], row[1], row[2], row[3])
 
     def getGroupPermissions(self, groupId):
         cursor = self.db.cursor()
