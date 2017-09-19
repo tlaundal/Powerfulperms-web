@@ -1,6 +1,7 @@
 class Permission:
 
-    def __init__(self, permission, world, server, expires):
+    def __init__(self, id, permission, world, server, expires):
+        self.id = id
         self.permission = permission
         self.world = world
         self.server = server
