@@ -23,6 +23,15 @@ class Database:
 
         return [Player(row[0], row[1], row[2], row[3]) for row in rows]
 
+    def getPlayer(self, playerUuid):
+        cursor = self.db.cursor()
+        cursor.execute("""SELECT uuid, name, prefix, suffix
+            FROM {}players
+            WHERE uuid = %s""".format(self.prefix), (playerUuid,))
+        row = cursor.fetchone()
+
+        return Player(row[0], row[1], row[2], row[3]) if row is not None else None
+
     def getPlayerPermissions(self, playerUuid):
         cursor = self.db.cursor()
         cursor.execute("""SELECT id, permission, world, server, expires
@@ -44,10 +53,20 @@ class Database:
 
     def getGroups(self):
         cursor = self.db.cursor()
-        cursor.execute("""SELECT id, name, ladder, `rank` FROM {}groups""".format(self.prefix))
+        cursor.execute("""SELECT id, name, ladder, `rank`
+            FROM {}groups""".format(self.prefix))
         rows = cursor.fetchall()
 
         return [Group(row[0], row[1], row[2], row[3]) for row in rows]
+
+    def getGroup(self, groupId):
+        cursor = self.db.cursor()
+        cursor.execute("""SELECT id, name, ladder, `rank`
+            FROM {}groups
+            WHERE id = %s""".format(self.prefix), (groupId,))
+        row = cursor.fetchone()
+
+        return Group(row[0], row[1], row[2], row[3]) if row is not None else None
 
     def getGroupPermissions(self, groupId):
         cursor = self.db.cursor()
