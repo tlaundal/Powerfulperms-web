@@ -3,6 +3,8 @@ from .player import Player
 from .group import Group
 from .permission import Permission
 from .playergroup import PlayerGroup
+from .prefix import Prefix
+from .suffix import Suffix
 
 
 class Database:
@@ -17,7 +19,7 @@ class Database:
 
     def getPlayers(self, playerUuid=None):
         query = """SELECT uuid, name, prefix, suffix
-            FROM {}players;""".format(self.prefix)
+            FROM {}players""".format(self.prefix)
 
         if playerUuid is not None:
             query += " WHERE uuid = %s"
@@ -102,14 +104,23 @@ class Database:
             LEFT JOIN {0}groupparents p ON g.id = p.parentgroupid
             WHERE p.groupid = %s""".format(self.prefix), (groupId,))
 
+        rows = cursor.fetchall()
+        return [Group(row[0], row[1], row[2], row[3]) for row in rows]
+
     def getGroupPrefixes(self, groupId):
         cursor = self.db.cursor()
         cursor.execute("""SELECT id, prefix, server
             FROM {}groupprefixes
-            WHERE groupid = %s""".format(self.prefix), (groupId))
+            WHERE groupid = %s""".format(self.prefix), (groupId,))
+
+        rows = cursor.fetchall()
+        return [Prefix(row[0], row[1], row[2]) for row in rows]
 
     def getGroupSuffixes(self, groupId):
         cursor = self.db.cursor()
         cursor.execute("""SELECT id, suffix, server
             FROM {}groupsuffixes
-            WHERE groupid = %s""".format(self.prefix), (groupId))
+            WHERE groupid = %s""".format(self.prefix), (groupId,))
+
+        rows = cursor.fetchall()
+        return [Suffix(row[0], row[1], row[2]) for row in rows]
