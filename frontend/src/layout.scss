@@ -1,0 +1,45 @@
+$sidebar-width: 10rem;
+$sidebar-padding: 0.5rem;
+
+html, body, router-view {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar {
+  height: 100%;
+  width: $sidebar-width;
+  float: left;
+}
+
+.sidebar .element {
+  padding: $sidebar-padding;
+}
+
+.sidebar img {
+  width: 100%;
+}
+
+.sidebar a {
+  display: block;
+  margin: -$sidebar-padding;
+  padding: $sidebar-padding 3*$sidebar-padding;
+}
+
+.container {
+  height: 100%;
+  margin-left: $sidebar-width;
+  width: calc(100% - $sidebar-width);
+}
+
+.centercontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+}
