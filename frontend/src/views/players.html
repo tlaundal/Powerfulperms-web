@@ -1,0 +1,19 @@
+<template>
+  <nav class="sidebar categories secondary" role="navigation">
+    <template repeat.for="player of players">
+      <div class="element">
+        <a href="#">
+          ${player.name}
+        </a>
+      </div>
+    </template>
+  </nav>
+
+  <section class="container">
+    <div class="centercontainer">
+      <div class="centerchild no-selection">
+        Players
+      </div>
+    </div>
+  </section>
+</template>

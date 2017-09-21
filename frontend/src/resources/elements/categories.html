@@ -1,0 +1,14 @@
+<template>
+  <nav class="sidebar categories main" role="navigation">
+    <div class="element">
+      <img src="/res/ox.png"/ />
+    </div>
+    <template repeat.for="category of categories">
+      <div class="element ${category.id === $parent.selected ? 'active': ''}">
+          <a route-href="route.bind: category.route"
+             click.delegate="$parent.select(category)">
+            ${category.name}</a>
+      </div>
+    </template>
+  </nav>
+</template>

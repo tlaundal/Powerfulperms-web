@@ -1,0 +1,19 @@
+<template>
+  <nav class="sidebar categories secondary" role="navigation">
+    <template repeat.for="group of groups">
+      <div class="element">
+        <a href="#">
+          ${group.name}
+        </a>
+      </div>
+    </template>
+  </nav>
+
+  <section class="container">
+    <div class="centercontainer">
+      <div class="centerchild no-selection">
+        Groups
+      </div>
+    </div>
+  </section>
+</template>

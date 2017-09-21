@@ -1,5 +1,6 @@
 $sidebar-width: 10rem;
 $sidebar-padding: 0.5rem;
+$secondary-top-padding: 1rem;
 
 html, body, router-view {
   width: 100%;
@@ -12,6 +13,11 @@ html, body, router-view {
   height: 100%;
   width: $sidebar-width;
   float: left;
+}
+
+.sidebar.secondary {
+  padding-top: $secondary-top-padding;
+  height: calc(100% - $secondary-top-padding);
 }
 
 .sidebar .element {

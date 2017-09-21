@@ -1,23 +1,12 @@
 <template>
-  <require from="./layout.css"></require>
-  <require from="./colors.css"></require>
-  <require from="./fonts.css"></require>
+  <require from="./styles/layout.css"></require>
+  <require from="./styles/colors.css"></require>
+  <require from="./styles/fonts.css"></require>
 
-  <nav class="sidebar categories" role="navigation">
-    <div class="element">
-      <img src="/res/ox.png"/ />
-    </div>
-    <div class="element">
-      <a href="#">
-        Groups
-      </a>
-    </div>
-      <div class="element">
-        <a href="#">
-          Players
-        </a>
-      </div>
-  </nav>
+  <require from="./resources/elements/categories"></require>
+
+
+  <categories></categories>
 
   <section class="container">
     <router-view></router-view>

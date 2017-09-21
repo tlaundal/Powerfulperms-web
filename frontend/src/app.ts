@@ -7,8 +7,9 @@ export class App {
   configureRouter(config: RouterConfiguration, router: Router){
     config.title = 'PowerfulPerms-Web';
     config.map([
-      { route: '',        moduleId: 'no-category'},
-      { route: 'groups',  moduleId: 'groups',      name:'groups', title:'Groups' }
+      { route: '',        moduleId: 'views/no-category'},
+      { route: 'groups',  moduleId: 'views/groups',     name:'groups',  title:'Groups' },
+      { route: 'players', moduleId: 'views/players',    name:'players', title:'Players' }
     ]);
 
     this.router = router;

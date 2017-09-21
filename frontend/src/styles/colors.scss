@@ -1,0 +1,30 @@
+$menu-background-1: rgb(28, 28, 32);
+$menu-background-2: rgb(40, 40, 48);
+$menu-accent-1: rgb(64, 64, 64);
+$menu-accent-2: rgb(96, 96, 96);
+
+.container {
+  background-color: rgb(232, 232, 232);
+}
+
+.main {
+  background-color: $menu-background-1;
+  color: white;
+}
+
+.active {
+  background-color: $menu-accent-1;
+}
+
+.secondary {
+  background-color: $menu-background-2;
+  color: white;
+}
+
+.sidebar a {
+  color: inherit;
+}
+
+.sidebar a:hover {
+  background-color: $menu-accent-2;
+}
