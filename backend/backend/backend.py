@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import Resource, Api
+from flask_cors import CORS
 from .db import Database
 from .api import Players, PlayerPermissions, PlayerGroups
 from .api import Groups, GroupPermissions, GroupParents, GroupPrefixes, GroupSuffixes
@@ -7,6 +8,7 @@ from .api import Groups, GroupPermissions, GroupParents, GroupPrefixes, GroupSuf
 app = Flask(__name__)
 app.config.from_object("backend.default_settings")
 app.config.from_envvar("PPWB_CONFIG", silent=True)
+CORS(app)
 
 api = Api(app)
 
