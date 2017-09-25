@@ -35,6 +35,11 @@
           "node_modules/requirejs/require.js"
         ],
         "dependencies": [
+          {
+            "name": "fuse.js",
+            "path": "../node_modules/fuse.js/dist/",
+            "main": "fuse"
+          },
           "aurelia-fetch-client",
           "aurelia-binding",
           "aurelia-bootstrapper",
