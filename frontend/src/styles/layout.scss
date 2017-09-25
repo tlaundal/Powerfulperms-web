@@ -34,6 +34,14 @@ html, body, router-view {
   padding: $sidebar-padding 3*$sidebar-padding;
 }
 
+.sidebar input {
+  width: 100%;
+}
+
+.sidebar .element.search {
+  padding: $sidebar-padding 3*$sidebar-padding;
+}
+
 .container {
   height: 100%;
   margin-left: $sidebar-width;

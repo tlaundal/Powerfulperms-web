@@ -1,6 +1,9 @@
 <template>
   <nav class="sidebar categories secondary" role="navigation">
-    <template repeat.for="group of groups">
+    <div class="element search">
+      <input type="search" placeholder="Search" input.delegate="searchFor($event.target.value)"/>
+    </div>
+    <template repeat.for="group of groups_view">
       <div class="element">
         <a href="#">
           ${group.name}

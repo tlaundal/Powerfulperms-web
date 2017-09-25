@@ -2,6 +2,7 @@ $menu-background-1: rgb(28, 28, 32);
 $menu-background-2: rgb(40, 40, 48);
 $menu-accent-1: rgb(64, 64, 64);
 $menu-accent-2: rgb(96, 96, 96);
+$menu-accent-3: rgb(128, 128, 128);
 
 .container {
   background-color: rgb(232, 232, 232);
@@ -26,5 +27,16 @@ $menu-accent-2: rgb(96, 96, 96);
 }
 
 .sidebar a:hover {
+  background-color: $menu-accent-3;
+}
+
+.sidebar .search {
   background-color: $menu-accent-2;
+}
+
+.sidebar input {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  box-sizing: border-box;
+  border-bottom: 1px #ffffff;
 }
