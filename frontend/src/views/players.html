@@ -1,13 +1,6 @@
 <template>
-  <nav class="sidebar categories secondary" role="navigation">
-    <template repeat.for="player of players">
-      <div class="element">
-        <a href="#">
-          ${player.name}
-        </a>
-      </div>
-    </template>
-  </nav>
+  <require from="../resources/elements/searchable-navigation.html"></require>
+  <searchable-navigation displayer.bind="display" search.call="search($event)" view.bind="view"></searchable-navigation>
 
   <section class="container">
     <div class="centercontainer">

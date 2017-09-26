@@ -36,4 +36,8 @@ export class Groups extends Fused<Group> {
       });
   }
 
+  display(group: Group) {
+    return group.name;
+  }
+
 }

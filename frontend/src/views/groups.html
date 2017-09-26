@@ -1,16 +1,6 @@
 <template>
-  <nav class="sidebar categories secondary" role="navigation">
-    <div class="element search">
-      <input type="search" placeholder="Search" input.delegate="search($event.target.value)"/>
-    </div>
-    <template repeat.for="group of view">
-      <div class="element">
-        <a href="#">
-          ${group.name}
-        </a>
-      </div>
-    </template>
-  </nav>
+  <require from="../resources/elements/searchable-navigation.html"></require>
+  <searchable-navigation displayer.bind="display" search.call="search($event)" view.bind="view"></searchable-navigation>
 
   <section class="container">
     <div class="centercontainer">

@@ -1,13 +1,24 @@
 import {autoinject} from 'aurelia-framework';
 import {Backend, Player} from '../lib/backend';
+import {Fused} from '../lib/fused';
 
 @autoinject
-export class Players {
+export class Players extends Fused<Player> {
 
   backend: Backend;
-  players: Array<Player>;
 
   constructor(backend: Backend) {
+    super({
+      shouldSort: true,
+      threshold: 0.6,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharLength: 1,
+      keys: [
+        "name"
+      ]
+    });
     this.backend = backend;
   }
 
@@ -15,8 +26,12 @@ export class Players {
     let $this = this;
     this.backend.getPlayers()
       .then(players => {
-        $this.players = players;
+        $this.setData(players);
       });
+  }
+
+  display(player: Player) {
+    return player.name;
   }
 
 }
