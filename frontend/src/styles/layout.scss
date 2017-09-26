@@ -17,7 +17,7 @@ html, body, router-view {
 
 .sidebar.secondary {
   padding-top: $secondary-top-padding;
-  height: calc(100% - $secondary-top-padding);
+  height: calc(100% - #{$secondary-top-padding});
 }
 
 .sidebar .element {
@@ -45,7 +45,7 @@ html, body, router-view {
 .container {
   height: 100%;
   margin-left: $sidebar-width;
-  width: calc(100% - $sidebar-width);
+  width: calc(100% - #{$sidebar-width});
 }
 
 .centercontainer {
