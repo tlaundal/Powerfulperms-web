@@ -26,6 +26,11 @@ export class Players extends Fused<Player> {
     let $this = this;
     this.backend.getPlayers()
       .then(players => {
+        players.forEach((player) => {
+          player.params = {
+            "id": player.uuid
+          };
+        })
         $this.setData(players);
       });
   }

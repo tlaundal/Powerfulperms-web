@@ -1,11 +1,11 @@
-<template bindable="displayer, search, view">
+<template bindable="displayer, search, view, route">
   <nav class="sidebar categories secondary" role="navigation">
     <div class="element search">
       <input type="search" placeholder="Search" input.delegate="search($event.target.value)"/>
     </div>
     <template repeat.for="entry of view">
       <div class="element">
-        <a href="#">
+        <a route-href="route.bind: route; params.bind: entry.params">
           ${displayer(entry)}
         </a>
       </div>

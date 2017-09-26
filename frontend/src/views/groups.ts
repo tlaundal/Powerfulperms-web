@@ -32,6 +32,11 @@ export class Groups extends Fused<Group> {
     let $this = this;
     this.backend.getGroups()
       .then(groups => {
+        groups.forEach((group) => {
+          group.params = {
+            "id": group.id
+          };
+        });
         $this.setData(groups);
       });
   }

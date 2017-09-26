@@ -6,6 +6,8 @@ export interface Group {
   name: string;
   ladder: string;
   rank: number;
+
+  params?: object;
 }
 
 export interface Player {
@@ -13,6 +15,8 @@ export interface Player {
   name: string;
   prefix: string;
   suffix: string;
+
+  params?: object;
 }
 
 @autoinject
