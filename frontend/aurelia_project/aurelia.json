@@ -30,16 +30,12 @@
       {
         "name": "vendor-bundle.js",
         "prepend": [
+          "node_modules/fuse.js/dist/fuse.js",
           "node_modules/bluebird/js/browser/bluebird.core.js",
           "node_modules/aurelia-cli/lib/resources/scripts/configure-bluebird.js",
           "node_modules/requirejs/require.js"
         ],
         "dependencies": [
-          {
-            "name": "fuse.js",
-            "path": "../node_modules/fuse.js/dist/",
-            "main": "fuse"
-          },
           "aurelia-fetch-client",
           "aurelia-binding",
           "aurelia-bootstrapper",

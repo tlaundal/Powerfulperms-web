@@ -1,24 +1,20 @@
 import {autoinject} from 'aurelia-framework';
 import {Backend, Group} from '../lib/backend';
-import * as Fuse from 'fuse.js';
+import {Fused} from '../lib/fused';
+
+declare class Fuse<T> {
+  constructor(data: Array<T>, config: Object);
+
+  search(query: string): Array<T>;
+}
 
 @autoinject
-export class Groups {
+export class Groups extends Fused<Group> {
 
   backend: Backend;
-  groups: Array<Group>;
-  groups_view: Array<Group>;
-
-  fuse_options: Object;
-  fuse: Fuse;
-  search: String;
-
-  filter: (a: Group) => boolean = () => true;
-  sort: (a: Group, b: Group) => number = (a:Group, b:Group) => a < b ? -1 : 1;
 
   constructor(backend: Backend) {
-    this.backend = backend;
-    this.fuse_options = {
+    super({
       shouldSort: true,
       threshold: 0.6,
       location: 0,
@@ -28,23 +24,16 @@ export class Groups {
       keys: [
         "name"
       ]
-    };
+    });
+    this.backend = backend;
   }
 
   created() {
     let $this = this;
     this.backend.getGroups()
       .then(groups => {
-        $this.groups = groups;
-        $this.groups_view = $this.groups;
-        //$this.fuse = new Fuse($this.groups, $this.fuse_options);
+        $this.setData(groups);
       });
-  }
-
-  searchFor(search: string) {
-    // this.groups_view = this.fuse.search(search)
-    search = search.toLowerCase();
-    this.groups_view = this.groups.filter((group: Group) => group.name.toLowerCase().indexOf(search) !== -1);
   }
 
 }
