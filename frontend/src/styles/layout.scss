@@ -57,3 +57,24 @@ html, body, router-view {
   width: 100%;
   height: 100%;
 }
+
+.flexcontainer {
+  display: flex;
+  flex-wrap: wrap;
+
+  padding: 1rem;
+}
+
+.card h3 {
+  padding: 0;
+  padding-bottom: 0.5rem;
+  margin: 0;
+}
+
+.card {
+  width: 10rem;
+  height: 4rem;
+
+  margin: 1rem;
+  padding: 0.5rem;
+}

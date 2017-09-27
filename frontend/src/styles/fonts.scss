@@ -1,4 +1,4 @@
-.sidebar {
+html {
   font-family: sans-serif;
 }
 
@@ -18,5 +18,13 @@
   font-family: sans-serif;
   font-size: 2rem;
   text-transform: uppercase;
+  font-weight: bold;
+}
+
+.card {
+  text-align: center;
+}
+
+h3 {
   font-weight: bold;
 }

@@ -3,9 +3,18 @@
   <searchable-navigation displayer.bind="display" search.call="search($event)" view.bind="view" route="player"></searchable-navigation>
 
   <section class="container">
-    <div class="centercontainer">
-      <div class="centerchild no-selection">
-        Player detail!
+    <div class="flexcontainer">
+      <div class="flexchild card">
+        <h3>Name</h3>
+        <span>${player.name}</span>
+      </div>
+      <div class="flexchild card">
+        <h3>Prefix</h3>
+        <span>${player.prefix}</span>
+      </div>
+      <div class="flexchild card">
+        <h3>Suffix</h3>
+        <span>${player.suffix}</span>
       </div>
     </div>
   </section>

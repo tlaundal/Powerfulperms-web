@@ -60,4 +60,14 @@ export class Backend {
       .then(response => response.json());
   }
 
+  getGroupDetails(id: number): Promise<Group> {
+    return this.client.fetch('groups/' + id, {method: 'get'})
+      .then(response => response.json());
+  }
+
+  getPlayerDetails(uuid: string): Promise<Player> {
+    return this.client.fetch('players/' + uuid, {method: 'get'})
+      .then(response => response.json());
+  }
+
 }
