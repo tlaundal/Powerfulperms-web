@@ -2,6 +2,7 @@ $sidebar-width: 10rem;
 $sidebar-padding: 0.5rem;
 $secondary-top-padding: 1rem;
 
+/** General **/
 html, body, router-view {
   width: 100%;
   height: 100%;
@@ -9,6 +10,7 @@ html, body, router-view {
   padding: 0;
 }
 
+/** Sidebar **/
 .sidebar {
   height: 100%;
   width: $sidebar-width;
@@ -42,39 +44,52 @@ html, body, router-view {
   padding: $sidebar-padding 3*$sidebar-padding;
 }
 
+/** Content **/
 .container {
   height: 100%;
   margin-left: $sidebar-width;
   width: calc(100% - #{$sidebar-width});
 }
 
-.centercontainer {
+.container.center {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  width: 100%;
-  height: 100%;
 }
 
-.flexcontainer {
+.container.cards {
+  padding: 1rem;
+
+  // Moves the header to the center
+  text-align: center;
+}
+
+header.card {
+  min-width: 16rem;
+  display: inline-block;
+
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.flex {
   display: flex;
   flex-wrap: wrap;
-
-  padding: 1rem;
 }
 
-.card h3 {
+.card h3, .card h2 {
   padding: 0;
   padding-bottom: 0.5rem;
   margin: 0;
 }
 
 .card {
-  width: 10rem;
-  height: 4rem;
-
   margin: 1rem;
   padding: 0.5rem;
+}
+
+.card img {
+  height: 4rem;
+  float: left;
 }

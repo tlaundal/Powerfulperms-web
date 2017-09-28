@@ -2,20 +2,13 @@
   <require from="../resources/elements/searchable-navigation.html"></require>
   <searchable-navigation displayer.bind="display" search.call="search($event)" view.bind="view" route="player"></searchable-navigation>
 
-  <section class="container">
-    <div class="flexcontainer">
-      <div class="flexchild card">
-        <h3>Name</h3>
-        <span>${player.name}</span>
-      </div>
-      <div class="flexchild card">
-        <h3>Prefix</h3>
-        <span>${player.prefix}</span>
-      </div>
-      <div class="flexchild card">
-        <h3>Suffix</h3>
-        <span>${player.suffix}</span>
-      </div>
+  <section class="container cards">
+    <header class="card">
+      <img src="https://minotar.net/avatar/${player.name}/100" title="${player.uuid}">
+      <h2>${player.name}</h2>
+      Prefix '<span class="bold">${player.prefix}</span>' | Suffix '<span  class="bold">${player.suffix}</span>'
+    </header>
+    <div class="flex">
     </div>
   </section>
 </template>
