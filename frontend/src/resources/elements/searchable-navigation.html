@@ -1,5 +1,6 @@
 <template bindable="displayer, search, view, route">
   <nav class="sidebar categories secondary" role="navigation">
+    <slot></slot>
     <div class="element search">
       <input type="search" placeholder="Search" input.delegate="search($event.target.value)"/>
     </div>

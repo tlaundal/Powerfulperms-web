@@ -5,18 +5,31 @@
   <require from="../resources/elements/group-parents"></require>
   <require from="../resources/elements/group-permissions"></require>
 
-  <searchable-navigation displayer.bind="display" search.call="search($event)" view.bind="view" route="group"></searchable-navigation>
+  <searchable-navigation displayer.bind="display"
+                         search.call="search($event)"
+                         view.bind="view"
+                         route="group">
+  </searchable-navigation>
 
   <section class="container cards">
     <header class="card medium">
       <h2>${group.name}</h2>
-      With rank <span class="bold">${group.rank}</span> on ladder <span class="bold">${group.ladder}</span>
+      With rank <span class="bold">${group.rank}</span> on ladder
+      <span class="bold">${group.ladder}</span>
     </header>
     <div class="flex">
-      <group-prefixes class="card medium" group.bind="group.id"></group-prefixes>
-      <group-suffixes class="card medium" group.bind="group.id"></group-suffixes>
-      <group-parents class="card medium" group.bind="group.id"></group-parents>
-      <group-permissions class="card big" group.bind="group.id"></group-permissions>
+      <group-prefixes class="card medium"
+                      group.bind="group.id">
+      </group-prefixes>
+      <group-suffixes class="card medium"
+                      group.bind="group.id">
+      </group-suffixes>
+      <group-parents class="card medium"
+                     group.bind="group.id">
+      </group-parents>
+      <group-permissions class="card big"
+                         group.bind="group.id">
+      </group-permissions>
     </div>
   </section>
 </template>
