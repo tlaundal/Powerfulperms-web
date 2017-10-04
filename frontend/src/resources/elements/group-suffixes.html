@@ -10,7 +10,7 @@
     <tbody class="mono">
       <tr repeat.for="suffix of suffixes">
         <td>${suffix.server || '*'}</td>
-        <td class="suffix">${suffix.suffix}</td>
+        <td class="colored" innerhtml.bind="suffix.suffix"></td>
       </tr>
       <tr if.bind="empty">
         <td class="no-data" colspan="2">No data</td>

@@ -10,7 +10,7 @@
     <tbody class="mono">
       <tr repeat.for="prefix of prefixes">
         <td>${prefix.server || '*'}</td>
-        <td class="prefix">${prefix.prefix}</td>
+        <td class="colored" innerhtml.bind="prefix.prefix"></td>
       </tr>
       <tr if.bind="empty">
         <td class="no-data" colspan="2">No data</td>

@@ -11,7 +11,7 @@
     </thead>
     <tbody class="mono">
       <tr repeat.for="permission of permissions">
-        <td>${permission.permission || '*'}</td>
+        <td class="permission" innerhtml.bind="permission.permission"></td>
         <td>${permission.server || '*'}</td>
         <td>${permission.world || '*'}</td>
         <td>${permission.expires || '*'}</td>

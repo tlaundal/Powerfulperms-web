@@ -105,6 +105,8 @@ header.card {
 .card.big {
   min-width: 32rem;
   flex-grow: 2;
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
 
 .card table {

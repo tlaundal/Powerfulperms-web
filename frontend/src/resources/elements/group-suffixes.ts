@@ -1,5 +1,6 @@
 import {bindable, autoinject} from 'aurelia-framework';
 import {Backend, GroupSuffix} from '../../lib/backend';
+import {renderColors} from '../value-converters/render-colors';
 
 @autoinject
 export class GroupSuffixes {
@@ -23,6 +24,9 @@ export class GroupSuffixes {
     this.empty = false;
     this.suffixes = [];
     this.backend.getGroupSuffixes(this.group).then(suffixes => {
+      suffixes.forEach(suffix => {
+        suffix.suffix = renderColors(suffix.suffix);
+      })
       this.loading = false;
       this.suffixes = suffixes;
       this.empty = suffixes == null || suffixes.length === 0;

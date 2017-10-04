@@ -23,6 +23,11 @@ export class GroupPermissions {
     this.empty = false;
     this.permissions = [];
     this.backend.getGroupPermissions(this.group).then(permissions => {
+      permissions.forEach(permission => {
+        if (!permission.permission.startsWith("-")) {
+          permission.permission = "&nbsp;" + permission.permission;
+        }
+      })
       permissions.sort((a: Permission, b: Permission): number => {
         if (a.server !== b.server) {
           return a.server < b.server ? -1 : 1;

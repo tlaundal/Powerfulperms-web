@@ -1,5 +1,6 @@
 import {bindable, autoinject} from 'aurelia-framework';
 import {Backend, GroupPrefix} from '../../lib/backend';
+import {renderColors} from '../value-converters/render-colors';
 
 @autoinject
 export class GroupPrefixes {
@@ -23,6 +24,9 @@ export class GroupPrefixes {
     this.empty = false;
     this.prefixes = [];
     this.backend.getGroupPrefixes(this.group).then(prefixes => {
+      prefixes.forEach(prefix => {
+        prefix.prefix = renderColors(prefix.prefix);
+      })
       this.loading = false;
       this.prefixes = prefixes;
       this.empty = prefixes == null || prefixes.length === 0;
