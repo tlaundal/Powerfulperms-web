@@ -24,9 +24,21 @@ export class GroupSuffixes {
     this.empty = false;
     this.suffixes = [];
     this.backend.getGroupSuffixes(this.group).then(suffixes => {
+
+      // Filter only last suffix for each server and
+      // render the sufixes
+      let suffixMap: Map<string, GroupSuffix> = new Map();
       suffixes.forEach(suffix => {
         suffix.suffix = renderColors(suffix.suffix);
+        suffixMap.set(suffix.server, suffix);
+      });
+
+      // Push the suffixes back into the array
+      suffixes = [];
+      suffixMap.forEach((value: GroupSuffix, key: string) => {
+        suffixes.push(value);
       })
+
       this.loading = false;
       this.suffixes = suffixes;
       this.empty = suffixes == null || suffixes.length === 0;
