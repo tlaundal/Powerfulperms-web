@@ -31,6 +31,14 @@ export interface GroupSuffix {
   server: string;
 }
 
+export interface Permission {
+  id: number;
+  permission: string;
+  world: string;
+  server: string;
+  expires: Date;
+}
+
 @autoinject
 export class Backend {
 
@@ -94,6 +102,11 @@ export class Backend {
 
   getGroupParents(id: number): Promise<Array<Group>> {
     return this.client.fetch(`groups/${id}/parents`, {method: 'get'})
+      .then(response => response.json());
+  }
+
+  getGroupPermissions(id: number): Promise<Array<Permission>> {
+    return this.client.fetch(`groups/${id}/permissions`, {method: 'get'})
       .then(response => response.json());
   }
 

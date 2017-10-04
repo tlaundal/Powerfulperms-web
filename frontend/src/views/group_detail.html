@@ -3,6 +3,7 @@
   <require from="../resources/elements/group-prefixes"></require>
   <require from="../resources/elements/group-suffixes"></require>
   <require from="../resources/elements/group-parents"></require>
+  <require from="../resources/elements/group-permissions"></require>
 
   <searchable-navigation displayer.bind="display" search.call="search($event)" view.bind="view" route="group"></searchable-navigation>
 
@@ -15,6 +16,7 @@
       <group-prefixes class="card medium" group.bind="group.id"></group-prefixes>
       <group-suffixes class="card medium" group.bind="group.id"></group-suffixes>
       <group-parents class="card medium" group.bind="group.id"></group-parents>
+      <group-permissions class="card big" group.bind="group.id"></group-permissions>
     </div>
   </section>
 </template>

@@ -1,0 +1,27 @@
+<template>
+  <h3>Permissions</h3>
+  <table>
+    <thead>
+      <tr>
+        <td>Node</td>
+        <td>Server</td>
+        <td>World</td>
+        <td>Expires</td>
+      </tr>
+    </thead>
+    <tbody class="mono">
+      <tr repeat.for="permission of permissions">
+        <td>${permission.permission || '*'}</td>
+        <td>${permission.server || '*'}</td>
+        <td>${permission.world || '*'}</td>
+        <td>${permission.expires || '*'}</td>
+      </tr>
+      <tr if.bind="empty">
+        <td class="no-data" colspan="4">No data</td>
+      </tr>
+      <tr if.bind="loading">
+        <td class="no-data" colspan="4">Loading...</td>
+      </tr>
+    </tbody>
+  </table>
+</template>
