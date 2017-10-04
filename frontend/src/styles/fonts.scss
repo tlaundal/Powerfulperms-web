@@ -37,3 +37,15 @@ h3, h2 {
 .bold {
   font-weight: bold;
 }
+
+.card thead {
+  font-weight: bold;
+}
+
+.fixes.card tbody {
+  font-family: monospace;
+}
+
+td.no-data {
+  text-align: center;
+}

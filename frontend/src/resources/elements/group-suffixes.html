@@ -1,0 +1,23 @@
+<template>
+  <h3>Suffixes</h3>
+  <table>
+    <thead>
+      <tr>
+        <td>Server</td>
+        <td>Suffix</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr repeat.for="suffix of suffixes">
+        <td>${suffix.server || '*'}</td>
+        <td class="suffix">${suffix.suffix}</td>
+      </tr>
+      <tr if.bind="empty">
+        <td class="no-data" colspan="2">No data</td>
+      </tr>
+      <tr if.bind="loading">
+        <td class="no-data" colspan="2">Loading...</td>
+      </tr>
+    </tbody>
+  </table>
+</template>

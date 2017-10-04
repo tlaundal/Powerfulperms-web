@@ -19,6 +19,18 @@ export interface Player {
   params?: object;
 }
 
+export interface GroupPrefix {
+  id: number;
+  prefix: string;
+  server: string;
+}
+
+export interface GroupSuffix {
+  id: number;
+  suffix: string;
+  server: string;
+}
+
 @autoinject
 export class Backend {
 
@@ -67,6 +79,21 @@ export class Backend {
 
   getPlayerDetails(uuid: string): Promise<Player> {
     return this.client.fetch('players/' + uuid, {method: 'get'})
+      .then(response => response.json());
+  }
+
+  getGroupPrefixes(id: number): Promise<Array<GroupPrefix>> {
+    return this.client.fetch(`groups/${id}/prefixes`, {method: 'get'})
+      .then(response => response.json());
+  }
+
+  getGroupSuffixes(id: number): Promise<Array<GroupSuffix>> {
+    return this.client.fetch(`groups/${id}/suffixes`, {method: 'get'})
+      .then(response => response.json());
+  }
+
+  getGroupParents(id: number): Promise<Array<Group>> {
+    return this.client.fetch(`groups/${id}/parents`, {method: 'get'})
       .then(response => response.json());
   }
 

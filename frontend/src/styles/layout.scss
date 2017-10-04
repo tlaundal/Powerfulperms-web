@@ -48,6 +48,7 @@ html, body, router-view {
 .container {
   height: 100%;
   margin-left: $sidebar-width;
+  box-sizing: border-box;
   width: calc(100% - #{$sidebar-width});
 }
 
@@ -66,7 +67,6 @@ html, body, router-view {
 }
 
 header.card {
-  min-width: 16rem;
   display: inline-block;
 
   padding-left: 2rem;
@@ -87,9 +87,19 @@ header.card {
 .card {
   margin: 1rem;
   padding: 0.5rem;
+  box-sizing: border-box;
 }
 
 .card img {
   height: 4rem;
   float: left;
+}
+
+.card.medium {
+  min-width: 16rem;
+  flex-grow: 1;
+}
+
+.card table {
+  width: 100%;
 }

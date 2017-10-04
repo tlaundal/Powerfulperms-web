@@ -1,13 +1,20 @@
 <template>
   <require from="../resources/elements/searchable-navigation.html"></require>
+  <require from="../resources/elements/group-prefixes"></require>
+  <require from="../resources/elements/group-suffixes"></require>
+  <require from="../resources/elements/group-parents"></require>
+
   <searchable-navigation displayer.bind="display" search.call="search($event)" view.bind="view" route="group"></searchable-navigation>
 
   <section class="container cards">
-    <header class="card">
+    <header class="card medium">
       <h2>${group.name}</h2>
       With rank <span class="bold">${group.rank}</span> on ladder <span class="bold">${group.ladder}</span>
     </header>
     <div class="flex">
+      <group-prefixes class="card medium fixes" group.bind="group.id"></group-prefixes>
+      <group-suffixes class="card medium fixes" group.bind="group.id"></group-suffixes>
+      <group-parents class="card medium" group.bind="group.id"></group-parents>
     </div>
   </section>
 </template>
