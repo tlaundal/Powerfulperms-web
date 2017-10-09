@@ -1,41 +1,49 @@
-from flask import Flask
-from flask_restful import Resource, Api
-from flask_cors import CORS
-from .db import Database
-from .api import Players, PlayerPermissions, PlayerGroups
-from .api import Groups, GroupPermissions, GroupParents, GroupPrefixes, GroupSuffixes
 
+
+## Setup the App
+from flask import Flask
 app = Flask(__name__)
 app.config.from_object("backend.default_settings")
 app.config.from_envvar("PPWB_CONFIG", silent=True)
+
+## Setup flask-SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
+user_db = SQLAlchemy(app)
+
+## Setup the CLI
+from .cli import create_user
+
+## Initialize the authentication
+from flask_httpauth import HTTPBasicAuth
+auth = HTTPBasicAuth()
+from .auth import verify_password
+
+## Add support for CORS
+from flask_cors import CORS
 CORS(app)
 
-api = Api(app)
-
+## Create our database connection to PowerfulPerms
+from .db import Database
 database = Database(app.config)
 
-Players.db = database
-api.add_resource(Players, '/', '/players', '/players/<string:playerUuid>')
+## Initialize flask-RESTful
+from flask_restful import Resource, Api
+api = Api(app)
 
-PlayerPermissions.db = database
+# Register the resources
+from .api import Players, PlayerPermissions, PlayerGroups
+from .api import Groups, GroupPermissions, GroupParents, GroupPrefixes, GroupSuffixes
+
+api.add_resource(Players,           '/',
+                                    '/players',
+                                    '/players/<string:playerUuid>')
+api.add_resource(PlayerGroups,      '/players/<string:playerUuid>/groups')
 api.add_resource(PlayerPermissions, '/players/<string:playerUuid>/permissions',
-    '/players/<string:playerUuid>/permissions/<int:permissionId>')
-
-PlayerGroups.db = database
-api.add_resource(PlayerGroups, '/players/<string:playerUuid>/groups')
-
-Groups.db = database
-api.add_resource(Groups, '/groups', '/groups/<int:groupId>')
-
-GroupPermissions.db = database
-api.add_resource(GroupPermissions, '/groups/<int:groupId>/permissions',
-    '/groups/<int:groupId>/permissions/<int:permissionId>')
-
-GroupParents.db = database
-api.add_resource(GroupParents, '/groups/<int:groupId>/parents')
-
-GroupPrefixes.db = database
-api.add_resource(GroupPrefixes, '/groups/<int:groupId>/prefixes')
-
-GroupSuffixes.db = database
-api.add_resource(GroupSuffixes, '/groups/<int:groupId>/suffixes')
+                                    '/players/<string:playerUuid>/permissions/<int:permissionId>')
+api.add_resource(Groups,            '/groups',
+                                    '/groups/<int:groupId>')
+api.add_resource(GroupParents,      '/groups/<int:groupId>/parents')
+api.add_resource(GroupPrefixes,     '/groups/<int:groupId>/prefixes')
+api.add_resource(GroupSuffixes,     '/groups/<int:groupId>/suffixes')
+api.add_resource(GroupPermissions,  '/groups/<int:groupId>/permissions',
+                                    '/groups/<int:groupId>/permissions/<int:permissionId>')

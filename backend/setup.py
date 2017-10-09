@@ -8,6 +8,9 @@ setup(
         'flask',
         'flask-restful',
         'flask-cors',
-        'mysqlclient'
+        'mysqlclient',
+        'flask-sqlalchemy',
+        'passlib',
+        'flask-httpauth'
     ]
 )

@@ -1,6 +1,9 @@
 from flask_restful import Resource, fields, marshal_with
+from ..backend import database, auth
 
 class PlayerPermissions(Resource):
+
+    decorators = [auth.login_required]
 
     types = {
         'id': fields.Integer,
@@ -11,7 +14,7 @@ class PlayerPermissions(Resource):
     }
 
     def __init__(self):
-        self.db = PlayerPermissions.db
+        self.db = database
 
     @marshal_with(types)
     def get(self, playerUuid, permissionId=None):
