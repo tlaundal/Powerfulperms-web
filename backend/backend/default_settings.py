@@ -5,5 +5,7 @@ DATABASE_PASS="root"
 DATABASE_NAME="db"
 DATABASE_PREFIX=""
 
+SECRET_KEY="ASuperSecretKeyThatMustBeLongAndRandomAndSecretDoNotUseThisMessage"
+
 SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/auth.db'
 SQLALCHEMY_TRACK_MODIFICATIONS = False

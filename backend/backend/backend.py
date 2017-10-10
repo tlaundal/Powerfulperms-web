@@ -1,10 +1,10 @@
-
-
 ## Setup the App
 from flask import Flask
 app = Flask(__name__)
 app.config.from_object("backend.default_settings")
 app.config.from_envvar("PPWB_CONFIG", silent=True)
+
+SECRET_KEY = app.config['SECRET_KEY']
 
 ## Setup flask-SQLAlchemy
 from flask_sqlalchemy import SQLAlchemy
@@ -25,6 +25,9 @@ CORS(app)
 ## Create our database connection to PowerfulPerms
 from .db import Database
 database = Database(app.config)
+
+## Add custom endpoints
+from .token_endpoint import get_auth_token
 
 ## Initialize flask-RESTful
 from flask_restful import Resource, Api

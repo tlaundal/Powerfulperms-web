@@ -4,11 +4,18 @@ from .user import User
 
 @auth.verify_password
 def verify_password(username, password):
-    user = User.query.filter_by(username = username).first()
-    if not user or not user.verify_password(password):
+    if username.lower() == "token":
+        user = User.verify_auth_token(password)
+    else:
+        user = User.query.filter_by(username = username).first()
+        if not user or not user.verify_password(password):
+            user = None
+
+    if not user:
         return False
-    g.user = user
-    return True
+    else:
+        g.user = user
+        return True
 
 @auth.error_handler
 def unauthorized():

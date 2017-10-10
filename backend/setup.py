@@ -11,6 +11,7 @@ setup(
         'mysqlclient',
         'flask-sqlalchemy',
         'passlib',
-        'flask-httpauth'
+        'flask-httpauth',
+        'itsdangerous'
     ]
 )
