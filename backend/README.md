@@ -10,7 +10,7 @@ First of all you need a virtual environment. In this environment you should set 
 
 Install the package and dependencies with
 ```sh
-    pip install .
+    pip install --editable .
 ```
 
 Copy the default config
@@ -21,5 +21,5 @@ Copy the default config
 
 Run the debug server with
 ```sh
-    python setup.py install && flask run
+    flask run
 ```
