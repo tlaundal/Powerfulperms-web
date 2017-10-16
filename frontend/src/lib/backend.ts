@@ -58,16 +58,26 @@ export class Backend {
           }
         })
         .withInterceptor({
-          request(request) {
-            console.log(`Requesting ${request.method} ${request.url}`);
-            return request;
-          },
-          response(response) {
-            console.log(`Received ${response.status} ${response.url}`);
-            return response;
-          }
+          request: this.requestInterceptor,
+          response: this.responseInterceptor,
+          responseError: this.responseErrorHandler
         });
     });
+  }
+
+  responseErrorHandler(error) {
+    console.log("Got error:", error);
+    return error;
+  }
+
+  requestInterceptor(request) {
+    console.log(`Requesting ${request.method} ${request.url}`);
+    return request;
+  }
+
+  responseInterceptor(response) {
+    console.log(`Received ${response.status} ${response.url}`);
+    return response;
   }
 
   getGroups(): Promise<Array<Group>> {
