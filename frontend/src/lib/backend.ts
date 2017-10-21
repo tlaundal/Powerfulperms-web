@@ -70,7 +70,15 @@ export class Backend {
             return response;
           },
           responseError(response) {
-            notificationService.addNotificationMessage(response.message);
+            if (response.status === 401 || response.status === 403) {
+              notificationService.addNotificationMessage("You Are not logged in!");
+            } else if (response.status) {
+              notificationService.addNotificationMessage(`Got ${response.status}: ${response.statusText}`);
+            } else if (response.message) {
+              notificationService.addNotificationMessage(response.message);
+            } else {
+              notificationService.addNotificationMessage(`Uknown network error!`);
+            }
             return response;
           }
         });
