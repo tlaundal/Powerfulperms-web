@@ -10,7 +10,7 @@ export FLASK_DEBUG=true
 
 Install the package and dependencies with
 ```sh
-pip install .
+    pip install --editable .
 ```
 
 Copy the default config
@@ -19,18 +19,13 @@ cp backend/default_settings.py config.py
 export PPWB_CONFIG=$(pwd)/config.py
 ```
 
-Install the default server with
-```sh
-python setup.py install
-```
-
 Create the user database and a user with
 ```sh
 flask initdb
 flask create_user <username> <password>
 ```
 
-Start the default server with
+Start the debug server with
 ```sh
 flask run
 ```

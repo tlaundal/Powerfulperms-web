@@ -1,5 +1,6 @@
 import {autoinject} from 'aurelia-framework';
 import {HttpClient, json} from 'aurelia-fetch-client';
+import {NotificationService} from './notification-service';
 
 export interface Group {
   id: number;
@@ -44,9 +45,11 @@ export class Backend {
 
   endpoint: string = 'http://localhost:5000/';
   client: HttpClient;
+  notificationService: NotificationService;
 
-  constructor(client: HttpClient) {
+  constructor(client: HttpClient, notificationService: NotificationService) {
     this.client = client;
+
     this.client.configure(config => {
       config
         .withBaseUrl(this.endpoint)
@@ -64,6 +67,10 @@ export class Backend {
           },
           response(response) {
             console.log(`Received ${response.status} ${response.url}`);
+            return response;
+          },
+          responseError(response) {
+            notificationService.addNotificationMessage(response.message);
             return response;
           }
         });
