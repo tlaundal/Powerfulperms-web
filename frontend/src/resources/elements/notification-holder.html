@@ -1,0 +1,8 @@
+<template>
+  <require from="./notification-holder.css"></require>
+  <require from="./notification.html"></require>
+
+  <template repeat.for="notification of notifications">
+    <notification message.bind="notification"></notification>
+  </template>
+</template>
