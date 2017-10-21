@@ -6,6 +6,10 @@ app.config.from_envvar("PPWB_CONFIG", silent=True)
 
 SECRET_KEY = app.config['SECRET_KEY']
 
+## Add support for CORS
+from flask_cors import CORS
+CORS(app)
+
 ## Setup flask-SQLAlchemy
 from flask_sqlalchemy import SQLAlchemy
 user_db = SQLAlchemy(app)
@@ -17,10 +21,6 @@ from .cli import create_user
 from flask_httpauth import HTTPBasicAuth
 auth = HTTPBasicAuth()
 from .auth import verify_password
-
-## Add support for CORS
-from flask_cors import CORS
-CORS(app)
 
 ## Create our database connection to PowerfulPerms
 from .db import Database
