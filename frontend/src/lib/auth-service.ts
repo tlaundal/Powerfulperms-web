@@ -23,7 +23,8 @@ export class AuthService {
   }
 
   private generateHeader(username: string, password: string): string {
-    return btoa(`${username}:${password}`);
+    let header = "basic " + btoa(`${username}:${password}`);
+    return header;
   }
 
   public isLoggedIn(): Promise<boolean> {
@@ -31,7 +32,7 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       let token = this.retrieveToken();
       if (token == null) {
-        resolve(true);
+        resolve(false);
       }
 
       $this.client.fetch('groups', {
@@ -47,15 +48,21 @@ export class AuthService {
     });
   }
 
-  public login(username: string, password: string) {
+  public login(username: string, password: string): Promise<boolean> {
     let $this = this;
-    this.client.fetch('generate_token', {
+    console.log("Authenticating with username", username);
+    return this.client.fetch('generate_token', {
         method: 'GET',
         headers: {'Authorization': this.generateHeader(username, password)}
       })
       .then(response => response.json())
       .then(response => response.token)
       .then(token => {
+        if (token === null || token === undefined) {
+          console.log("Did not recieve an auth token!");
+          return false;
+        }
+        console.log("Recieved auth token", token);
         $this.storeToken(token);
         return true;
       });

@@ -28,8 +28,10 @@ export class App {
   attached() {
     let $this = this;
     this.authService.isLoggedIn().then(loggedIn => {
-      console.log("Was not logged in, forwarding to login route");
-      $this.router.navigateToRoute("login");
+      if (!loggedIn) {
+        console.log("Was not logged in, forwarding to login route");
+        $this.router.navigateToRoute("login");
+      }
     });
   }
 
