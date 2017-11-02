@@ -1,6 +1,9 @@
 from flask_restful import Resource, fields, marshal_with
+from ..backend import database, auth
 
 class GroupPrefixes(Resource):
+
+    decorators = [auth.login_required]
 
     types = {
         'id': fields.Integer,
@@ -9,7 +12,7 @@ class GroupPrefixes(Resource):
     }
 
     def __init__(self):
-        self.db = GroupPrefixes.db
+        self.db = database
 
     @marshal_with(types)
     def get(self, groupId):

@@ -1,0 +1,17 @@
+<template>
+  <div class="container center">
+    <h1>Login</h1>
+    <form>
+      <input type="text" name="username" placeholder="Username" value.bind="username" />
+      <input type="password" name="password" placeholder="Password" value.bind="password"  />
+      <button click.delegate="submit()">Submit</button>
+    </form>
+    <p show.bind="successful">
+      Successful login. Congrats!
+      Now you can navigate to wherever you want :)
+    </p>
+    <p show.bind="fail">
+      Login failed for some reason....
+    </p>
+  </div>
+</template>

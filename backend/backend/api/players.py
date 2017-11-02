@@ -1,6 +1,9 @@
 from flask_restful import Resource, fields, marshal_with
+from ..backend import database, auth
 
 class Players(Resource):
+
+    decorators = [auth.login_required]
 
     types = {
         'uuid': fields.String,
@@ -9,8 +12,8 @@ class Players(Resource):
         'suffix': fields.String
     }
 
-    def __init(self):
-        self.db = Players.db
+    def __init__(self):
+        self.db = database
 
     @marshal_with(types)
     def get(self, playerUuid=None):

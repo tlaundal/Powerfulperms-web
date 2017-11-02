@@ -4,8 +4,8 @@ This is the backend for Powerfulperms-web. It is built using flask-restful.
 ## Setup
 First of all you need a virtual environment. In this environment you should set the following environment variables (add the commands to venv/bin/activate)
 ```sh
-    export FLASK_APP=backend
-    export FLASK_DEBUG=true
+export FLASK_APP=backend
+export FLASK_DEBUG=true
 ```
 
 Install the package and dependencies with
@@ -15,11 +15,17 @@ Install the package and dependencies with
 
 Copy the default config
 ```sh
-    cp backend/default_settings.py config.py
-    export PPWB_CONFIG=$(pwd)/config.py
+cp backend/default_settings.py config.py
+export PPWB_CONFIG=$(pwd)/config.py
 ```
 
-Run the debug server with
+Create the user database and a user with
 ```sh
-    flask run
+flask initdb
+flask create_user <username> <password>
+```
+
+Start the debug server with
+```sh
+flask run
 ```
