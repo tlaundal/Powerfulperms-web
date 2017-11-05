@@ -28,6 +28,7 @@ database = Database(app.config)
 
 ## Add custom endpoints
 from .token_endpoint import get_auth_token
+from .health_check import health_check
 
 ## Initialize flask-RESTful
 from flask_restful import Resource, Api
@@ -37,8 +38,7 @@ api = Api(app)
 from .api import Players, PlayerPermissions, PlayerGroups
 from .api import Groups, GroupPermissions, GroupParents, GroupPrefixes, GroupSuffixes
 
-api.add_resource(Players,           '/',
-                                    '/players',
+api.add_resource(Players,           '/players',
                                     '/players/<string:playerUuid>')
 api.add_resource(PlayerGroups,      '/players/<string:playerUuid>/groups')
 api.add_resource(PlayerPermissions, '/players/<string:playerUuid>/permissions',
