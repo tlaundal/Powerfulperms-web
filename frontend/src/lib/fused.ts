@@ -11,9 +11,11 @@ export class Fused<T> {
 
   data: Array<T>;
   fuse: Fuse<T>;
+  limit: number;
 
-  constructor(options: object) {
+  constructor(options: object, limit: number = 100) {
     this.fuse = new Fuse([], options);
+    this.limit = limit;
   }
 
   setData(data: Array<T>) {
@@ -24,11 +26,15 @@ export class Fused<T> {
   }
 
   search(query: string) {
+    let view;
     if (query.length === 0) {
-      this.view = this.data;
+      view = this.data;
     } else {
-      this.view = this.fuse.search(query);
+      view = this.fuse.search(query);
     }
+
+    view = view.slice(0, this.limit);
+    this.view = view;
   }
 
 }

@@ -18,7 +18,7 @@ export class Players extends Fused<Player> {
       keys: [
         "name"
       ]
-    });
+    }, 20);
     this.backend = backend;
   }
 

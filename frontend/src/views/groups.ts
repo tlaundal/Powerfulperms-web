@@ -24,7 +24,7 @@ export class Groups extends Fused<Group> {
       keys: [
         "name"
       ]
-    });
+    }, 20);
     this.backend = backend;
   }
 
