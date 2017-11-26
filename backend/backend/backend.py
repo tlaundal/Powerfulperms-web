@@ -2,7 +2,7 @@
 from flask import Flask
 app = Flask(__name__)
 app.config.from_object("backend.default_settings")
-app.config.from_envvar("PPWB_CONFIG", silent=True)
+app.config.from_envvar("PPWB_CONFIG", silent=False)
 
 SECRET_KEY = app.config['SECRET_KEY']
 

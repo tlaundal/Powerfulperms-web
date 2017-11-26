@@ -90,6 +90,11 @@ header.card {
   margin: 0;
 }
 
+.card p {
+  padding: 0;
+  margin: 0;
+}
+
 .card {
   margin: 1rem;
   padding: 1rem;
@@ -98,7 +103,15 @@ header.card {
 
 .card img {
   height: 4rem;
+}
+
+.card .left {
   float: left;
+  margin-right: 0.5rem;
+}
+
+.card .right {
+  float: right;
 }
 
 .card.medium {
